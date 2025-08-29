@@ -362,11 +362,19 @@ def main():
     # df = df.dropna(subset=['text', 'pics'])
     # print(f"Loaded dataset with {len(df)} reviews")
     
+    ## since pics and resp columns consist of list and dict, will need to remove to check the duplicate before continue
+    # df1 = df.drop(columns=['pics','resp'])
+    # duplicate_indices = df1.index[df1.duplicated(keep="first")]
+    
+    ## clean dataframe where it remove the duplicated rows according to ['user_id', 'name', 'time', 'rating', 'text', 'gmap_id']
+    # df_clean = df.drop(index=duplicate_indices).reset_index(drop=True)
+    # df_clean["id"] = df_clean.index
+    
     # # Initialize classifier
     # classifier = ReviewPolicyClassifier()
     
     # # Run on a small sample first
-    # sample_df = df.head(3)
+    # sample_df = df_clean.head(3)
     # print("Processing sample...")
     # classified_sample = classifier.classify_dataset(sample_df, text_column='text')
     
